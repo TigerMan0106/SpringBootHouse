@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.HouseDao">
+    <select id="queryHouseById" parameterType="Integer" resultType="com.shsxt.house.po.House">
+        select * from house where houseId=#{houseId}
+    </select>
+    <select id="queryHouseList" parameterType="com.shsxt.house.query.HouseQuery" resultType="com.shsxt.house.po.House">
+        select * from house <where><if test="userId!=null and userId!=''">and userId=#{userId}</if><if test="houseName!=null and houseName!=''">and houseName like concat('%',#{houseName},'%')</if></where>
+    </select>
+    <insert id="insertHouse" parameterType="com.shsxt.house.po.House" useGeneratedKeys="true" keyProperty="houseId">
+        insert into house (houseName,housePrice,houseNote,houseType,houseArea,province,city,district,address,houseStatus,userId) values (#{houseName},#{housePrice},#{houseNote},#{houseType},#{houseArea},#{province},#{city},#{district},#{address},#{houseStatus},#{userId})
+    </insert>
+    <update id="updateHouse" parameterType="com.shsxt.house.po.House">
+        update house set houseName=#{houseName},housePrice=#{housePrice},houseNote=#{houseNote},houseType=#{houseType},houseArea=#{houseArea},province=#{province},city=#{city},district=#{district},address=#{address} where houseId=#{houseId}
+    </update>
+    <delete id="deleteHouseById" parameterType="Integer">
+        delete from house where houseId=#{houseId}
+    </delete>
+</mapper>

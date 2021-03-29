@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.MessageDao">
+    <select id="queryMessageList" parameterType="com.shsxt.house.query.MessageQuery" resultType="com.shsxt.house.po.Message">
+        select * from message <where><if test="messageName!=null and messageName!=''">and messageName like concat('%',#{messageName},'%')</if></where>
+    </select>
+    <insert id="insertMessage" parameterType="com.shsxt.house.po.Message">
+        insert into message (messageName,messageContent,createTime,createUser) values (#{messageName},#{messageContent},#{createTime},#{createUser})
+    </insert>
+    <update id="updateMessage" parameterType="com.shsxt.house.po.Message">
+        update message set messageName=#{messageName},messageContent=#{messageContent},createTime=#{createTime},createUser=#{createUser} where messageId=#{messageId}
+    </update>
+    <delete id="deleteMessageById" parameterType="Integer">
+        delete from message where messageId=#{messageId}
+    </delete>
+    <select id="queryMessageById" parameterType="Integer" resultType="com.shsxt.house.po.Message">
+        select * from message where messageId=#{messageId}
+    </select>
+</mapper>

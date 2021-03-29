@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.UserDao">
+    <!--<resultMap id="User" type="com.shsxt.house.dao">-->
+        <!--<id column="userId" property="userId"></id>-->
+    <!--</resultMap>-->
+    <select id="queryUserByName" parameterType="String" resultType="com.shsxt.house.po.User">
+        select * from users where userName=#{userName}
+    </select>
+    <select id="queryAllUser" resultType="com.shsxt.house.po.User">
+        select * from users
+    </select>
+    <insert id="insertUser" parameterType="com.shsxt.house.po.User">
+        insert into users (userName,userRealName,userPwd,userSex,userPhone,userRole) values (#{userName},#{userRealName},#{userPwd},#{userSex},#{userPhone},#{userRole})
+    </insert>
+    <delete id="deleteUserByName" parameterType="String">
+        delete from users where userName=#{userName}
+    </delete>
+    <update id="updateUserByName" parameterType="com.shsxt.house.po.User">
+        update users set userRealName=#{userRealName},userPwd=#{userPwd},userSex=#{userSex},userPhone=#{userPhone},userRole=#{userRole} where userName=#{userName}
+    </update>
+    <select id="queryUserList" parameterType="com.shsxt.house.query.UserQuery" resultType="com.shsxt.house.po.User">
+        select * from users <where><if test="userName!=null and userName!=''">and userName like concat('%',#{userName},'%')</if></where>
+    </select>
+</mapper>

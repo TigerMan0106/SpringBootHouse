@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.PictureDao">
+    <select id="queryPictureByHouseId" parameterType="Integer" resultType="com.shsxt.house.po.Picture">
+        select * from picture where houseId=#{houseId}
+    </select>
+    <insert id="insertPicture" parameterType="com.shsxt.house.po.Picture">
+        insert into picture (houseId,pictureUrl) values (#{houseId},#{pictureUrl})
+    </insert>
+    <delete id="deletePictureByHouseId" parameterType="Integer">
+        delete from picture where houseId=#{houseId}
+    </delete>
+    <update id="updatePicture" parameterType="com.shsxt.house.po.Picture">
+        update picture set pictureUrl=#{pictureUrl} where houseId=#{houseId}
+    </update>
+</mapper>

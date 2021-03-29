@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.ApplyDao">
+    <select id="queryApplyById" parameterType="Integer" resultType="com.shsxt.house.po.Apply">
+        select * from apply where applyId=#{applyId}
+    </select>
+    <select id="queryApplyList" parameterType="com.shsxt.house.query.ApplyQuery" resultType="com.shsxt.house.po.Apply">
+        select * from apply <where><if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if><if test="userId!=null and userId!=''">userId=#userId</if></where>
+    </select>
+    <insert id="insertApply" parameterType="com.shsxt.house.po.Apply">
+        insert into apply (houseId,userId,applyStatus,startTime,endTime) values (#{houseId},#{userId},#{applyStatus},#{startTime},#{endTime})
+    </insert>
+    <update id="updateApply" parameterType="com.shsxt.house.po.Apply">
+        update apply set houseId=#{houseId},userId=#{userId},applyStatus=#{applyStatus},startTime=#{startTime},endTime=#{endTime} where applyId=#{applyId}
+    </update>
+    <delete id="deleteApply" parameterType="Integer">
+        delete from apply where applyId=#{applyId}
+    </delete>
+</mapper>

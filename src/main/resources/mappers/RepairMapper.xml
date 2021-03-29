@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.RepairDao">
+    <select id="queryRepairByRepairId" parameterType="Integer" resultType="com.shsxt.house.po.Repair">
+        select * from repair where repairId=#{repairId}
+    </select>
+    <insert id="insertRepair" parameterType="com.shsxt.house.po.Repair">
+        insert into repair (repairNote) values (#{repairNote})
+    </insert>
+    <delete id="deleteRepairByRepairId" parameterType="Integer">
+        delete from repair where repairId=#{repairId}
+    </delete>
+    <update id="updateRepair" parameterType="com.shsxt.house.po.Repair">
+        update repair set repairStatus=#{repairStatus},repairNote=#{repairNote}
+    </update>
+    <select id="queryRepairList" parameterType="com.shsxt.house.query.RepairQuery" resultType="com.shsxt.house.po.Repair">
+        select * from repair
+    </select>
+</mapper>

@@ -1,0 +1,54 @@
+spring:
+  profiles:
+    active: dev
+  #freemarker视图配置
+#  freemarker:
+#    template-loader-path: classpath:/views/
+#    suffix: .ftl
+#    #响应类型
+#    content-type: text/html
+#    #编码格式
+#    charset: utf-8
+#  #thymeleaf视图配置
+#  thymeleaf:
+#    prefix: classpath:/html/
+#    #关闭缓存
+#    cache: false
+  #数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/house?userUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+  #热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      #poll-interval: 3000
+      #quiet-period: 1000
+  #缓存配置
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.shsxt.house.po
+  #configuration:
+    #下划线转驼峰配置
+    #map-underscore-to-camel-case: true
+#pageHelper
+pagehelper:
+  helper-dialect: mysql
+#日志配置
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+    level: debug
+  level:
+    com:
+      shsxt:
+        house:
+          dao: debug

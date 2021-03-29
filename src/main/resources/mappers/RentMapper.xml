@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shsxt.house.dao.RentDao">
+    <select id="queryRentByRentId" parameterType="Integer" resultType="com.shsxt.house.po.Rent">
+        select * from rent where rentId=#{rentId}
+    </select>
+    <insert id="insertRent" parameterType="com.shsxt.house.po.Rent">
+        insert into rent (startTime,endTime) values (#{startTime},#{endTime})
+    </insert>
+    <delete id="deleteRentByRentId" parameterType="Integer">
+        delete from rent where rentId=#{rentId}
+    </delete>
+    <update id="updateRent" parameterType="com.shsxt.house.po.Rent">
+        update rent set rentStatus=#{rentStatus}
+    </update>
+    <select id="queryRentList" parameterType="com.shsxt.house.query.UserQuery" resultType="com.shsxt.house.po.User">
+        select * from rent
+    </select>
+</mapper>
