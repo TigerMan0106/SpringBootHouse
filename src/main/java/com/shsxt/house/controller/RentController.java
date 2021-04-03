@@ -19,7 +19,7 @@ public class RentController {
         return rentService.queryRentByRentId(rentId);
     }
     @PostMapping("insertRent")
-    public int insertRent(Rent rent){
+    public int insertRent(@RequestBody Rent rent){
         return rentService.insertRent(rent);
     }
     @PutMapping("updateRent")

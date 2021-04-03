@@ -9,9 +9,10 @@ import java.util.List;
 
 @Repository
 public interface ApplyDao {
-    public Apply queryApplyById(@Param("applyId") Integer applyId);
+    Apply queryApplyById(@Param("applyId") Integer applyId);
     public int insertApply(Apply apply);
     public int updateApply(Apply apply);
     public int deleteApply(@Param("applyId") Integer applyId);
     public List<Apply> queryApplyList(ApplyQuery applyQuery);
+    public int updateApplyStatus(@Param("applyId")Integer applyId,@Param("applyStatus")String applyStatus);
 }

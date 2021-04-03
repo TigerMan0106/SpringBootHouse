@@ -6,7 +6,7 @@
         select * from rent where rentId=#{rentId}
     </select>
     <insert id="insertRent" parameterType="com.shsxt.house.po.Rent">
-        insert into rent (startTime,endTime) values (#{startTime},#{endTime})
+        insert into rent (houseId,userId,startTime,endTime,rentStatus) values (#{houseId},#{userId},#{startTime},#{endTime},#{rentStatus})
     </insert>
     <delete id="deleteRentByRentId" parameterType="Integer">
         delete from rent where rentId=#{rentId}
@@ -14,7 +14,7 @@
     <update id="updateRent" parameterType="com.shsxt.house.po.Rent">
         update rent set rentStatus=#{rentStatus}
     </update>
-    <select id="queryRentList" parameterType="com.shsxt.house.query.UserQuery" resultType="com.shsxt.house.po.User">
+    <select id="queryRentList" parameterType="com.shsxt.house.query.RentQuery" resultType="com.shsxt.house.po.Rent">
         select * from rent
     </select>
 </mapper>

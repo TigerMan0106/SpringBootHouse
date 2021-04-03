@@ -58,4 +58,8 @@ public class ApplyController {
         }
         return map;
     }
+    @PutMapping("updateApplyStatus")
+    public Object updateApplyStatus(Integer applyId,String applyStatus){
+        return applyService.updateApplyStatus(applyId,applyStatus);
+    }
 }

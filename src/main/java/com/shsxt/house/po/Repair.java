@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +18,5 @@ public class Repair {
     private Integer houseId;
     private Integer userId;
     private String repairNote;
+    private Timestamp createTime;
 }

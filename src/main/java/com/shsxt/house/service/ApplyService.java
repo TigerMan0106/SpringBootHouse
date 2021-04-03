@@ -27,4 +27,7 @@ public class ApplyService {
         PageHelper.startPage(applyQuery.getPageNum(),applyQuery.getPageSize());
         return new PageInfo<Apply>(applyDao.queryApplyList(applyQuery));
     }
+    public int updateApplyStatus(Integer applyId,String applyStatus){
+        return applyDao.updateApplyStatus(applyId,applyStatus);
+    }
 }

@@ -6,7 +6,7 @@
         select * from apply where applyId=#{applyId}
     </select>
     <select id="queryApplyList" parameterType="com.shsxt.house.query.ApplyQuery" resultType="com.shsxt.house.po.Apply">
-        select * from apply <where><if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if><if test="userId!=null and userId!=''">userId=#userId</if></where>
+        select * from apply <where><if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if><if test="userId!=null and userId!=''">and userId=#{userId}</if></where>
     </select>
     <insert id="insertApply" parameterType="com.shsxt.house.po.Apply">
         insert into apply (houseId,userId,applyStatus,startTime,endTime) values (#{houseId},#{userId},#{applyStatus},#{startTime},#{endTime})
@@ -17,4 +17,7 @@
     <delete id="deleteApply" parameterType="Integer">
         delete from apply where applyId=#{applyId}
     </delete>
+    <update id="updateApplyStatus" >
+        update apply set applyStatus=#{applyStatus} where applyId=#{applyId}
+    </update>
 </mapper>
