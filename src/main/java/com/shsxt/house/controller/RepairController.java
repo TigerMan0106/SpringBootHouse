@@ -18,7 +18,7 @@ public class RepairController {
         return repairService.queryRepairByRepairId(repairId);
     }
     @PostMapping("insertRepair")
-    public int insertRepair(Repair repair){
+    public int insertRepair(@RequestBody Repair repair){
         return repairService.insertRepair(repair);
     }
     @PutMapping("updateRepair")
@@ -32,5 +32,9 @@ public class RepairController {
     @GetMapping("queryRepairList")
     public PageInfo<Repair> queryRepairList(RepairQuery repairQuery){
         return repairService.queryRepairList(repairQuery);
+    }
+    @PutMapping("updateStatus")
+    public int updateRepair(Integer repairId,String repairStatus){
+        return repairService.updateStatus(repairId,repairStatus);
     }
 }

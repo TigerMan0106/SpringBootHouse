@@ -5,8 +5,20 @@
     <select id="queryApplyById" parameterType="Integer" resultType="com.shsxt.house.po.Apply">
         select * from apply where applyId=#{applyId}
     </select>
-    <select id="queryApplyList" parameterType="com.shsxt.house.query.ApplyQuery" resultType="com.shsxt.house.po.Apply">
-        select * from apply <where><if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if><if test="userId!=null and userId!=''">and userId=#{userId}</if></where>
+    <select id="queryApplyList" parameterType="com.shsxt.house.query.ApplyQuery" resultType="com.shsxt.house.dto.Apply">
+        SELECT apply.applyId,apply.applyStatus,apply.houseId,apply.startTime,apply.endTime,apply.userId,
+        a.ownerName,a.houseName,users.userPhone,users.userRealName
+        from (apply LEFT JOIN users on apply.userId=users.userId)
+        LEFT JOIN
+        (select house.houseId,houseName,users.userId,userRealName as ownerName from house left JOIN users on house.userId=users.userId) as a on a.houseId= apply.houseId
+        <where>
+          <if test="houseId!=null and houseId!=''">and apply.houseId=#{houseId}</if>
+            <if test="ownerId!=null and ownerId!=''">
+                and apply.houseId in (select houseId from house where userId=#{ownerId})
+            </if>
+          <if test="userId!=null and userId!=''">and apply.userId=#{userId}</if>
+        </where>
+        GROUP BY apply.applyId
     </select>
     <insert id="insertApply" parameterType="com.shsxt.house.po.Apply">
         insert into apply (houseId,userId,applyStatus,startTime,endTime) values (#{houseId},#{userId},#{applyStatus},#{startTime},#{endTime})

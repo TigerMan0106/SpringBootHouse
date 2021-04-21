@@ -14,4 +14,9 @@ public class HouseQuery {
     private Integer pageSize=5;
     private Integer userId;
     private String houseName;
+    private String province;
+    private String city;
+    private String district;
+    private String[] priceList;
+    private String[] areaList;
 }

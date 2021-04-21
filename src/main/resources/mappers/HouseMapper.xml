@@ -6,7 +6,24 @@
         select * from house where houseId=#{houseId}
     </select>
     <select id="queryHouseList" parameterType="com.shsxt.house.query.HouseQuery" resultType="com.shsxt.house.po.House">
-        select * from house <where><if test="userId!=null and userId!=''">and userId=#{userId}</if><if test="houseName!=null and houseName!=''">and houseName like concat('%',#{houseName},'%')</if></where>
+        select * from house <where><if test="userId!=null and userId!=''">and userId=#{userId}</if>
+        <if test="houseName!=null and houseName!=''">and houseName like concat('%',#{houseName},'%')</if>
+        <if test="province!=null and province!='' and province!='省'.toString()">and province=#{province}</if>
+        <if test="city!=null and city!='' and city!='市'.toString()">and city=#{city}</if>
+        <if test="district!=null and district!='' and district!='区'.toString()">and district=#{district}</if>
+        <if test="priceList!=null and priceList.length>0">
+            and
+            <foreach collection="priceList" item="item" index="index" separator="or">
+                housePrice between #{item} and #{item}+1000
+            </foreach>
+        </if>
+        <if test="areaList!=null and areaList.length>0">
+            and
+            <foreach collection="areaList" item="item" index="index" separator="or">
+                houseArea between #{item} and #{item}+40
+            </foreach>
+        </if>
+        </where>
     </select>
     <insert id="insertHouse" parameterType="com.shsxt.house.po.House" useGeneratedKeys="true" keyProperty="houseId">
         insert into house (houseName,housePrice,houseNote,houseType,houseArea,province,city,district,address,houseStatus,userId) values (#{houseName},#{housePrice},#{houseNote},#{houseType},#{houseArea},#{province},#{city},#{district},#{address},#{houseStatus},#{userId})
@@ -17,4 +34,7 @@
     <delete id="deleteHouseById" parameterType="Integer">
         delete from house where houseId=#{houseId}
     </delete>
+    <update id="updateStatus">
+        update house set houseStatus=#{houseStatus} where houseId=#{houseId}
+    </update>
 </mapper>

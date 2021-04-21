@@ -13,4 +13,5 @@ public interface RepairDao {
     public int deleteRepairByRepairId(@Param("repairId") Integer repairId);
     public int updateRepair(Repair repair);
     public List<Repair> queryRepairList(RepairQuery repairQuery);
+    int updateStatus(@Param("repairId") Integer repairId,@Param("repairStatus")String repairStatus);
 }

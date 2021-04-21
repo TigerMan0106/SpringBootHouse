@@ -15,6 +15,11 @@
         update rent set rentStatus=#{rentStatus}
     </update>
     <select id="queryRentList" parameterType="com.shsxt.house.query.RentQuery" resultType="com.shsxt.house.po.Rent">
-        select * from rent
+        select * from rent <where>
+        <if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if>
+        <if test="ownerId!=null and ownerId!=''">
+            and houseId in (select houseId from house where userId=#{ownerId})
+        </if>
+        <if test="userId!=null and userId!=''">and userId=#{userId}</if></where>
     </select>
 </mapper>

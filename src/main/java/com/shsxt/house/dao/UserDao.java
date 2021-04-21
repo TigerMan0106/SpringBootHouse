@@ -12,4 +12,5 @@ public interface UserDao {
     public int deleteUserByName(@Param("userName") String userName);
     public int updateUserByName(User user);
     public List<User> queryUserList(UserQuery userQuery);
+    String queryUserById(@Param("userId") Integer userId);
 }

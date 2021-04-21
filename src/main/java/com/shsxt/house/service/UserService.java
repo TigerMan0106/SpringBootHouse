@@ -42,4 +42,7 @@ public class UserService {
         PageHelper.startPage(userQuery.getPageNum(),userQuery.getPageSize());
         return new  PageInfo<User>(userDao.queryUserList(userQuery));
     }
+    public String queryUserById(Integer userId){
+        return userDao.queryUserById(userId);
+    }
 }

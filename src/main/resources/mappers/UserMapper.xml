@@ -5,6 +5,9 @@
     <!--<resultMap id="User" type="com.shsxt.house.dao">-->
         <!--<id column="userId" property="userId"></id>-->
     <!--</resultMap>-->
+    <select id="queryUserById" parameterType="Integer" resultType="String">
+        select userRealName from users where userId=#{userId}
+    </select>
     <select id="queryUserByName" parameterType="String" resultType="com.shsxt.house.po.User">
         select * from users where userName=#{userName}
     </select>

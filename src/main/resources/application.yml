@@ -45,7 +45,7 @@ pagehelper:
 #日志配置
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger- %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%runnableMuch] %-5level %logger- %msg%n"
     level: debug
   level:
     com:

@@ -99,4 +99,8 @@ public class UserController {
     public PageInfo<User> queryUserList(UserQuery userQuery){
         return userService.queryUserList(userQuery);
     }
+    @GetMapping("queryUserById")
+    public String queryUserById(Integer userId){
+        return userService.queryUserById(userId);
+    }
 }

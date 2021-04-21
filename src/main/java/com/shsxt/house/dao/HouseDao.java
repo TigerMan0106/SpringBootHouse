@@ -14,4 +14,5 @@ public interface HouseDao {
     public int insertHouse(House house);
     public int deleteHouseById(@Param("houseId")Integer houseId);
     public List<House> queryHouseList(HouseQuery houseQuery);
+    int updateStatus(@Param("houseId")Integer houseId,@Param("houseStatus")String houseStatus);
 }

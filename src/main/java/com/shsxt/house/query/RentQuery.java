@@ -12,4 +12,7 @@ import lombok.ToString;
 public class RentQuery {
     private Integer pageNum=1;
     private Integer pageSize=5;
+    private Integer houseId;
+    private Integer userId;
+    private Integer ownerId;
 }

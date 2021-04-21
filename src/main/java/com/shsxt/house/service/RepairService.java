@@ -31,4 +31,7 @@ public class RepairService {
         PageHelper.startPage(repairQuery.getPageNum(),repairQuery.getPageSize());
         return new  PageInfo<Repair>(repairDao.queryRepairList(repairQuery));
     }
+    public int updateStatus(Integer repairId,String repairStatus){
+        return repairDao.updateStatus(repairId,repairStatus);
+    }
 }

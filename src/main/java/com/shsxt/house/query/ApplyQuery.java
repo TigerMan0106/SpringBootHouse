@@ -14,4 +14,5 @@ public class ApplyQuery {
     private Integer pageSize=5;
     private Integer houseId;
     private Integer userId;
+    private Integer ownerId;
 }

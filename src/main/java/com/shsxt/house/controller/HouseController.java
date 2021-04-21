@@ -12,6 +12,10 @@ import java.util.Map;
 public class HouseController {
     @Resource
     private HouseService houseService;
+    @PutMapping("updateStatus")
+    public Object updateStatus(Integer houseId,String houseStatus){
+        return houseService.updateStatus(houseId,houseStatus);
+    }
     @GetMapping("getHouse")
     public House getHouse(Integer houseId){
         return houseService.queryHouseById(houseId);

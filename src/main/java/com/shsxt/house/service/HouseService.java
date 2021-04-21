@@ -31,4 +31,7 @@ public class HouseService {
         PageHelper.startPage(houseQuery.getPageNum(),houseQuery.getPageSize());
         return new PageInfo<House>(houseDao.queryHouseList(houseQuery));
     }
+    public int updateStatus(Integer houseId,String houseStatus){
+        return houseDao.updateStatus(houseId,houseStatus);
+    }
 }

@@ -15,6 +15,14 @@
         update repair set repairStatus=#{repairStatus},repairNote=#{repairNote},createTime=#{createTime} where repairId=#{repairId}
     </update>
     <select id="queryRepairList" parameterType="com.shsxt.house.query.RepairQuery" resultType="com.shsxt.house.po.Repair">
-        select * from repair
+        select * from repair <where>
+        <if test="houseId!=null and houseId!=''">and houseId=#{houseId}</if>
+        <if test="ownerId!=null and ownerId!=''">
+            and houseId in (select houseId from house where userId=#{ownerId})
+        </if>
+        <if test="userId!=null and userId!=''">and userId=#{userId}</if></where>
     </select>
+    <update id="updateStatus">
+        update repair set repairStatus=#{repairStatus} where repairId=#{repairId}
+    </update>
 </mapper>
